@@ -2,7 +2,7 @@
   (:require [environ.core :as environ]
             [hiccup.core :as html]))
 
-(def title "Taxco")
+(def title "Tazko")
 
 (defn style [href & {:keys [integrity]}]
   [:link

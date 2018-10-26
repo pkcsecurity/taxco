@@ -48,20 +48,31 @@
 
 (defn body []
   [:div {:style (css ::body)}
-   [nav/nav]
+   [nav/nav 
+    "Devices"
+    "Risks"
+    "Help"]
    [:div
     {:style {:max-width "900px"
              :width "100%"
              :margin "0 auto"
-             :padding-top "3rem"}}
-    [:h4 "Josefina"]
-    [:p "This machine could be compromised."]
+             :padding-top "3rem"
+             :text-align :center}}
     [:div {:style {:display :flex
+                   :align-items :center
+                   :justify-content :center}}
+      [:h3 "Josefina"]
+      [:div {:style {:margin-left "0.5rem"}}
+        [c/icon :laptop]]]
+    [:p "This laptop is " [:span {:style {:color (c/pkc-colors :success)}} "on"] 
+     " and "
+     [:span {:style {:color (c/pkc-colors :warning)}} "at risk"]
+     "."]
+    [:div {:style {:margin-top "2rem"
+                   :display :flex
                    :justify-content :space-around
                    :align-items :center}}
-     [card  "Overall Health" 0.8]
-     [card  "Martini Strength" 0.65]
-     [card  "Flyness" 0.3]
-     [card  "Freshness" 0.9]]]])
-
-
+     [card  "Device Strength" 0.8]
+     [card  "Team Behavior" 0.65]
+     [card  "Resistance to Threats" 0.3]
+     [card  "Overall Security" 0.9]]]])
