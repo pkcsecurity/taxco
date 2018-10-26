@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="1966px" height="423px" viewBox="0 0 1966 423" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 52.2 (67145) - http://www.bohemiancoding.com/sketch -->
+    <title>taxo</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Page-1" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <path d="M95.2297233,241 L25,328.307115 L25,398 L323,398 L323,327.802127 L258.202741,241 L95.2297233,241 Z" id="Rectangle" stroke="#222222" stroke-width="50" fill-opacity="0.152994792" fill="#B0AFAD"></path>
+        <path d="M453.229723,241 L383,328.307115 L383,398 L681,398 L681,327.802127 L616.202741,241 L453.229723,241 Z" id="Rectangle" stroke="#222222" stroke-width="50" fill-opacity="0.152994792" fill="#B0AFAD"></path>
+        <path d="M274.229723,25 L204,112.307115 L204,182 L502,182 L502,111.802127 L437.202741,25 L274.229723,25 Z" id="Rectangle" stroke="#222222" stroke-width="50" fill-opacity="0.152994792" fill="#B0AFAD"></path>
+        <text id="TAXCO" font-family="ReplicaStd-Heavy, Replica Std" font-size="250" font-weight="600" letter-spacing="50" fill="#363636">
+            <tspan x="908" y="279">TAXC</tspan>
+            <tspan x="1775.5" y="279">O</tspan>
+        </text>
+    </g>
+</svg>
