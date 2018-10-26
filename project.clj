@@ -1,6 +1,7 @@
 (defproject taxco "0.1.0-SNAPSHOT"
   :dependencies [[bidi "LATEST"]
                  [camel-snake-kebab "0.4.0"]
+                 [cheshire "LATEST"]
                  [clojure-msgpack "LATEST"]
                  [compojure "LATEST"]
                  [environ "LATEST"]

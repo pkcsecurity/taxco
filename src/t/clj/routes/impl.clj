@@ -1,10 +1,12 @@
 (ns t.clj.routes.impl
   (:require 
     [bidi.ring :as bidi]
+    [clojure.java.io :as io]
     [environ.core :as env]
     [t.cljc.routes :as cljc-routes]
     [msgpack.core :as msgpack]
     [msgpack.clojure-extensions]
+    [cheshire.core :as cheshire]
     [ring.middleware.reload :as rl]
     [schema.core :as s])
   (:import [java.io ByteArrayInputStream]))
@@ -72,12 +74,12 @@
      (if-let [[request-schema# response-schema#] (cljc-routes/schemas route-kw#)]
        (def ~route-name 
          (fn [req#]
-           (let [req-body# (msgpack/unpack (:body req#))]
+           (let [req-body# (cheshire/parse-stream (io/reader (:body req#)) true)]
              (s/validate request-schema# req-body#)
              (let [result# (handler# (assoc req# :body req-body#))]
                (s/validate response-schema# (:body result#))
                (update result# 
                        :body 
                        (fn [x#]
-                         (ByteArrayInputStream. (msgpack/pack x#))))))))
+                         (cheshire/generate-string x#)))))))
        (throw (ex-info "No matching schemas for route" {:route route-kw#})))))
