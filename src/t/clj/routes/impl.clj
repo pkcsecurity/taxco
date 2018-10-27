@@ -74,9 +74,12 @@
      (if-let [[request-schema# response-schema#] (cljc-routes/schemas route-kw#)]
        (def ~route-name 
          (fn [req#]
-           (let [req-body# (cheshire/parse-stream (io/reader (:body req#)) true)]
+           (let [body# (:body req#)
+                 req-body# (cheshire/parse-stream (io/reader body#) true)]
              (s/validate request-schema# req-body#)
+             (println req#)
              (let [result# (handler# (assoc req# :body req-body#))]
+               (println route-kw# result#)
                (s/validate response-schema# (:body result#))
                (update result# 
                        :body 

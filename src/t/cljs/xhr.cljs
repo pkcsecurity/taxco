@@ -4,16 +4,21 @@
             [t.cljs.msgpack :as msgpack]
             [schema.core :as s :include-macros true]))
 
-(defn fetch-roundtrip [kw body]
+(defn fetch [kw verb body on-result]
   (if-let [[request-schema response-schema] (cljc-routes/schemas kw)]
     (-> (bidi/path-for cljc-routes/routes kw)
         (js/fetch 
-          (js-obj "method" "POST"
-                  "body" (msgpack/pack (s/validate request-schema body))
+          (js-obj "method" (case verb
+                             :post "POST"
+                             :get "GET")
+                  "body" (when-not (= :get verb)
+                           (JSON/stringify (s/validate request-schema body)))
                   "headers" (js-obj "Content-Type"
-                                    "application/octet-stream")))
-        (.then #(.arrayBuffer %))
-        (.then #(.log js/console 
-                      (s/validate response-schema 
-                                  (msgpack/unpack %)))))
+                                    "application/json")))
+        (.catch #(.error js/console %))
+        (.then #(.json %))
+        (.then (fn [res]
+                 (s/validate response-schema res)
+                 (on-result (js->clj res 
+                                     :keywordize-keys true)))))
     (throw (js/Error. (str "Keyword " kw " has no matching schemas")))))
